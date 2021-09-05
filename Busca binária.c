@@ -3,7 +3,7 @@
 
 int main(){
     
-    int *v;
+    int *vetor;
     
     int tamanho_vetor; 
 
@@ -21,13 +21,13 @@ int main(){
     
     scanf("%d", &tamanho_vetor);
     
-    v = (int *) malloc(tamanho_vetor * sizeof(int));
+    vetor = (int *) malloc(tamanho_vetor * sizeof(int));
 
-    if (v == NULL)
+    if (vetor == NULL)
     {
 
-       printf("Problema ao alocar vetor!");
-       return(1);      
+       printf("Não foi possível alocar o vetor");
+       return 1;      
        
     }
     else
@@ -37,7 +37,7 @@ int main(){
         {
             printf("Digite a posicao %d do vetor: ", i);
             scanf("%d", &valor);
-            v[i] = valor;
+            vetor[i] = valor;
         }
 
         printf("Digite o elemento que deseja pesquisa no vetor: ");
@@ -51,19 +51,19 @@ int main(){
               
               meio = (inicio + fim) / 2;
 
-              if (pesquisa == v[meio])
+              if (pesquisa == vetor[meio])
               {
                  encontrado = 0;
                  break;
               }
               
-              else if (pesquisa < v[meio])
+              else if (pesquisa < vetor[meio])
               {
                  fim = meio - 1;
                  continue;
               }
 
-              else if(pesquisa > v[meio])
+              else if(pesquisa > vetor[meio])
               {
                  inicio = meio + 1;
                  continue;
@@ -78,12 +78,12 @@ int main(){
         }
         
         if (encontrado == 0){
-           printf("Elemento %d encontrado! Posicao: %d - Valor: %d", pesquisa, meio, v[meio]);                      
+           printf("Elemento %d encontrado na posicao %d do vetor.", pesquisa, meio);                      
         } else {
            printf("Elemento %d nao encontrado!", pesquisa);
         }
 
-        return (0);
+        return 0;
         
     }
     
