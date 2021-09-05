@@ -17,6 +17,8 @@ int main(){
 
     int inicio, meio, fim;
     
+    int erro = 1;
+
     printf("Digite um tamanho para o vetor: ");
     
     scanf("%d", &tamanho_vetor);
@@ -29,20 +31,28 @@ int main(){
        printf("Não foi possível alocar o vetor");
        return 1;      
        
-    }
-    else
-    {
+    }else{
+        printf("Digite a posicao 0 do vetor: ");
+        scanf("%d", &valor);
+        vetor[0] = valor;
+        for (i = 1; i < tamanho_vetor; i++){
 
-        for (i = 0; i < tamanho_vetor; i++)
-        {
+          
             printf("Digite a posicao %d do vetor: ", i);
             scanf("%d", &valor);
             vetor[i] = valor;
-        }
 
+          if (vetor[i]<vetor[i-1]){
+            printf("Tem que ser em ordem crescente para funcionar a busca binária.\n");
+            erro = 1;
+            break;
+          }
+          erro = 0;
+        }
+      if(erro != 1){
         printf("Digite o elemento que deseja pesquisa no vetor: ");
         scanf("%d", &pesquisa);
-
+      }
         inicio = 0;
         fim = tamanho_vetor - 1;
         
@@ -76,15 +86,17 @@ int main(){
               }
               
         }
-        
-        if (encontrado == 0){
-           printf("Elemento %d encontrado na posicao %d do vetor.", pesquisa, meio);                      
-        } else {
-           printf("Elemento %d nao encontrado!", pesquisa);
+        if(erro != 1){
+          if (encontrado == 0){
+            printf("Elemento %d encontrado na posicao %d do vetor.", pesquisa, meio);                      
+          }else {
+            printf("Elemento %d nao encontrado!", pesquisa);
+          }
         }
-
-        return 0;
-        
     }
-    
+  
+  return 0;
+        
 }
+    
+
